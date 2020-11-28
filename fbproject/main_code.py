@@ -59,7 +59,7 @@ def start(Email, Password, url):
     get_content(soup, Contents)
 
     time.sleep(3)
-    for i in range(0, len(Contents)):
+    for i in range(0, len(Contents)-1):
         print()
         print('發文時間: ', Dates[i])
         print('內容: ', Contents[i])    
