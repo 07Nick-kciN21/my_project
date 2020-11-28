@@ -1,0 +1,37 @@
+import tkinter as tk
+import main_code as mc
+
+def click():
+    mc.start(ac.get(), pw.get(), url.get())
+
+win = tk.Tk()
+win.geometry('500x500')
+user = tk.Frame(win)
+Url = tk.Frame(win)
+user.pack()
+Url.pack()
+ac = tk.StringVar()
+pw = tk.StringVar()
+url = tk.StringVar()
+accounnt_label = tk.Label(user, text='帳號:')
+password_label = tk.Label(user, text='密碼:')
+url_label = tk.Label(Url, text = '網址')
+# accounnt_label.pack()
+# password_label.pack()
+# url_label.pack()
+accounnt_entry = tk.Entry(user, textvariable=ac)
+password_entry = tk.Entry(user, textvariable=pw)
+url_entry = tk.Entry(Url, textvariable = url, width = 50)
+# accounnt_entry.pack()
+# password_entry.pack()
+# url_entry.pack()
+start_button = tk.Button(user, text='登入', command=click)
+accounnt_label.grid(row=0, column=0)
+accounnt_entry.grid(row=0, column=1)
+password_label.grid(row=1, column=0)
+password_entry.grid(row=1, column=1)
+
+url_label.grid(row=3, column=0)
+url_entry.grid(row=4, column=0)
+start_button.grid(row=5, column=0)
+win.mainloop()
