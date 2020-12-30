@@ -4,7 +4,7 @@ from selenium import webdriver
 from selenium.webdriver.chrome.options import Options
 import time
 import re
-
+import csv
 def get_date(soup, Dates = []):
     dates = soup.find_all('b', {'class':'b6zbclly myohyog2 l9j0dhe7 aenfhxwr l94mrbxd ihxqhq3m nc684nl6 t5a262vz sdhka5h4'})
     date_r = re.compile(r'[=]')
@@ -13,7 +13,10 @@ def get_date(soup, Dates = []):
         if (re.match(date_r, date.getText()) == None):
             Date = date.getText().strip('=') 
             date2 = date_cf.findall(date.getText())
-            date3 = date2[0] + '月' + date2[1] + '號'
+            if(len(date2) == 1):
+                date3 = date2[0] + '小時前'
+            else:    
+                date3 = date2[0] + '月' + date2[1] + '號'
             Dates.append(date3)
 
 def get_content(soup, Contents = []):
@@ -59,8 +62,11 @@ def start(Email, Password, url):
     get_content(soup, Contents)
 
     time.sleep(3)
-    for i in range(0, len(Contents)-1):
-        print()
-        print('發文時間: ', Dates[i])
-        print('內容: ', Contents[i])    
+
+    with open('fb.csv', 'w', newline='', encoding='utf-8-sig') as csvfile:
+        fieldnames = ['發文時間', '內容']
+        writer = csv.DictWriter(csvfile, fieldnames=fieldnames)
+        writer.writeheader()
+        for i in range(0, len(Contents)):
+            writer.writerow({'發文時間':Dates[i], '內容':Contents[i]})
     chrome.quit()
