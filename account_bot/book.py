@@ -8,8 +8,8 @@ from linebot.models import MessageEvent, TextMessage, TextSendMessage, ImageSend
 import account
 import tem
 import re
-line_bot_api = LineBotApi('8bay3nEHfth4q53AO7667YkMmmM9d3N0hhnj5HCQMls/iSTy/IKeWj/b2IBVDN1hhfAp5/SMzeEYNc2v2KeQBEtuwjXJOlk9IgoL4MLdD7TSQnwkEvMdy/WPWV9/8UUWRzi5usTxv++AAjcjoQwnEQdB04t89/1O/w1cDnyilFU=')
-handler = WebhookHandler('f3d7e0d6ec0cbb8bac7461f1ecc18875')
+line_bot_api = LineBotApi('')
+handler = WebhookHandler('')
 
 i_or_d = -1
 respond = ''
